@@ -1,6 +1,6 @@
 import ProductItem from "./ProductItem";
 
-function ProductList({ products }) {
+function ProductList({ products, onEditar, onEliminar }) {
     
     if (!products || products.length === 0) {
         return <p>No hay productos registrados</p>;
@@ -12,6 +12,8 @@ function ProductList({ products }) {
                 <ProductItem 
                     key={products.id} 
                     products={products}
+                    onEditar={onEditar}
+                    onEliminar={onEliminar}
                 />
             ))}
         </ul>

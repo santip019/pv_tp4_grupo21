@@ -45,6 +45,11 @@ function Producto() {
     );
   }, [products, terminoBusqueda]);
 
+  const eliminarProducto = useCallback((id) => {
+    const productosRestantes = products.filter((prod) => prod.id !== id);
+    setProducts(productosRestantes);
+  }, [products]);
+
   return (
     <div className="producto">
       <header>
@@ -66,6 +71,7 @@ function Producto() {
         <ProductList 
         products={productosFiltrados}
         onEditar={ModoEditarProducto} 
+        onEliminar={eliminarProducto}
         />
         </>
         )}

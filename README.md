@@ -3,7 +3,7 @@
 - **Padilla Santiago** – 
 - **Efimov Valentina** – 
 - **Cruz Antonella** – 
-- **Calpanchay Maximiliano** – Desarrollo del componente Product Item
+- **Calpanchay Maximiliano** – Desarrollo del componente ProductItem
 - **Fernandez Bruno** – 
 
 ## Descripción del Proyecto

@@ -61,11 +61,11 @@ const FormularioProducto = ({ alAgregarProducto }) => {
 
   return (
     <form onSubmit={manejarEnvio}>
-      <div>
+      <div className="id">
         <label>ID: </label>
         <span>{datosFormulario.id}</span>
       </div>
-      <div>
+      <div className="descripcion">
         <label>Descripción:</label>
         <input
           type="text"
@@ -74,7 +74,7 @@ const FormularioProducto = ({ alAgregarProducto }) => {
           onChange={manejarCambio}
         />
       </div>
-      <div>
+      <div className="precio">
         <label>Precio Unitario:</label>
         <input
           type="number"
@@ -83,7 +83,7 @@ const FormularioProducto = ({ alAgregarProducto }) => {
           onChange={manejarCambio}
         />
       </div>
-      <div>
+      <div className="descuento">
         <label>Descuento (%):</label>
         <input
           type="number"
@@ -94,7 +94,7 @@ const FormularioProducto = ({ alAgregarProducto }) => {
           max="100" // se asegura de que el descuento no sea mayor a 100
         />
       </div>
-      <div>
+      <div className="precio-descuento">
         <label>Precio con Descuento:</label>
         <span> $ 
           { // se asegura de que el precio con descuento solo se muestre si hay un precio unitario y un descuento
@@ -106,7 +106,7 @@ const FormularioProducto = ({ alAgregarProducto }) => {
           }
         </span>
       </div>
-      <div>
+      <div className="stock">
         <label>Stock:</label>
         <input
           type="number"

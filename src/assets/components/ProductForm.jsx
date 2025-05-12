@@ -5,7 +5,7 @@ const FormularioProducto = ({ alAgregarProducto }) => {
     id: crypto.randomUUID().slice(0, 6), // crea un ID único de 6 caracteres
     descripcion: "",
     precioUnitario: "",
-    descuento: "",
+    descuento: "0",
     precioConDescuento: "",
     stock: "",
   });
@@ -53,7 +53,7 @@ const FormularioProducto = ({ alAgregarProducto }) => {
       id: crypto.randomUUID().slice(0, 6),
       descripcion: "",
       precioUnitario: "",
-      descuento: "",
+      descuento: "0",
       precioConDescuento: "",
       stock: "",
     });
@@ -90,22 +90,21 @@ const FormularioProducto = ({ alAgregarProducto }) => {
           name="descuento"
           value={datosFormulario.descuento}
           onChange={manejarCambio}
+          min="0" // se asegura de que el descuento no sea negativo
+          max="100" // se asegura de que el descuento no sea mayor a 100
         />
       </div>
       <div>
         <label>Precio con Descuento:</label>
-        <input
-          type="number"
-          name="precioConDescuento"
-          value={
+        <span> $ 
+          { // se asegura de que el precio con descuento solo se muestre si hay un precio unitario y un descuento
             datosFormulario.precioUnitario &&
             datosFormulario.descuento
               ? datosFormulario.precioUnitario *
                 (1 - datosFormulario.descuento / 100)
               : ""
           }
-          readOnly
-        />
+        </span>
       </div>
       <div>
         <label>Stock:</label>

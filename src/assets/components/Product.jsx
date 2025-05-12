@@ -1,36 +1,40 @@
-import { useState } from "react";
-import ProductForm from "./ProductForm";
+import { useState, useMemo, useCallback } from "react";
+import FormularioProducto from "./ProductForm"; // Usamos el nuevo nombre
 import ProductList from "./ProductList";
+import SearchBar from "./SearchBar";
 import "./Product.css";
 
-function Producto () {
+function Producto() {
   const [products, setProducts] = useState([]);
+  const [terminoBusqueda, setTerminoBusqueda] = useState("");
 
-  const agregarProducto = ({descripcion, precioUnitario, descuento, precioConDescuento, stock}) => {
-    const nuevoProducto = {
-      id: Date.now(),
-      descripcion,
-      precioUnitario,
-      descuento,
-      precioConDescuento,
-      stock
-    };
-    setProducts([...products, nuevoProducto]);
-  };
+  const alAgregarProducto = useCallback((producto) => {
+    setProducts([...products, producto]);
+  }, [products]);
 
-    return (
-      <div className="producto">
-        <header>
-          <h1 className="titulo">Productos</h1>
-        </header>
-        <main>
-          
-          <ProductForm onAgregar={agregarProducto} /> {/* Formulario para agregar un producto*/}
-          <ProductList products={products} /> {/* Llamado a ProductList.jsx para mostrar los productos*/}
+  const handleBuscar = useCallback((termino) => {
+    setTerminoBusqueda(termino.toLowerCase());
+  }, []);
 
-        </main>
-      </div>
+  const productosFiltrados = useMemo(() => {
+    return products.filter((prod) =>
+      prod.descripcion.toLowerCase().includes(terminoBusqueda) ||
+      prod.id.toString().includes(terminoBusqueda)
     );
+  }, [products, terminoBusqueda]);
+
+  return (
+    <div className="producto">
+      <header>
+        <h1 className="titulo">Productos</h1>
+      </header>
+      <main>
+        <SearchBar onBuscar={handleBuscar} />
+        <FormularioProducto alAgregarProducto={alAgregarProducto} />
+        <ProductList products={productosFiltrados} />
+      </main>
+    </div>
+  );
 }
 
 export default Producto;

@@ -1,6 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const FormularioProducto = ({ alAgregarProducto }) => {
+const FormularioProducto = ({
+  alAgregarProducto,
+  productoEnEdicion,
+  alGuardarEdicion,
+  onCancelarEdicion
+}) => {
   const [datosFormulario, setDatosFormulario] = useState({
     id: crypto.randomUUID().slice(0, 6), // crea un ID único de 6 caracteres
     descripcion: "",
@@ -9,6 +14,17 @@ const FormularioProducto = ({ alAgregarProducto }) => {
     precioConDescuento: "",
     stock: "",
   });
+
+  useEffect(() => {
+    if (productoEnEdicion) {
+      setDatosFormulario({
+        ...productoEnEdicion,
+        precioUnitario: productoEnEdicion.precioUnitario.toString(),
+        descuento: productoEnEdicion.descuento.toString(),
+        stock: productoEnEdicion.stock.toString()
+      });
+    }
+  }, [productoEnEdicion]);
 
   const manejarCambio = (evento) => {
     const { name, value } = evento.target;
@@ -46,8 +62,21 @@ const FormularioProducto = ({ alAgregarProducto }) => {
     };
 
     // llama a la funcion para poder agregar un nuevo producto
-    alAgregarProducto(nuevoProducto);
 
+     if (productoEnEdicion) {
+      alGuardarEdicion(nuevoProducto);
+    } else {
+      alAgregarProducto(nuevoProducto);
+      setDatosFormulario({
+        id: crypto.randomUUID().slice(0, 6),
+        descripcion: "",
+        precioUnitario: "",
+        descuento: "0",
+        precioConDescuento: "",
+        stock: "",
+      });
+    }
+  
     // para limpiar el formulario
     setDatosFormulario({
       id: crypto.randomUUID().slice(0, 6),
@@ -115,7 +144,15 @@ const FormularioProducto = ({ alAgregarProducto }) => {
           onChange={manejarCambio}
         />
       </div>
-      <button type="submit">Agregar Producto</button>
+      <button type="submit">
+        {productoEnEdicion ? "Guardar Cambios" : "Agregar Producto"}
+      </button>
+
+      {productoEnEdicion && (
+        <button type="button" onClick={onCancelarEdicion}>
+          Cancelar
+        </button>
+      )}
     </form>
   );
 };

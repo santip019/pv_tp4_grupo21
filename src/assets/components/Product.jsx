@@ -7,6 +7,28 @@ import "./Product.css";
 function Producto() {
   const [products, setProducts] = useState([]);
   const [terminoBusqueda, setTerminoBusqueda] = useState("");
+  const [productoEnEdicion, setProductoEnEdicion] = useState(null);
+  const [modoEdicion, setModoEdicion] = useState(false);
+
+  const ModoEditarProducto = useCallback((producto) => {
+    console.log("Editando producto:", producto)
+    setProductoEnEdicion(producto)
+    setModoEdicion(true)
+}, []);
+
+  const GuardarEdicion = useCallback((productoEditado) => {
+  const productosActualizados = products.map((prod) =>
+    prod.id === productoEditado.id ? productoEditado : prod
+  );
+  setProducts(productosActualizados);
+  setModoEdicion(false);
+  setProductoEnEdicion(null);
+}, [products]);
+
+ const handleCancelarEdicion = () => {
+    setProductoEnEdicion(null);
+    setModoEdicion(false);
+  };
 
   const alAgregarProducto = useCallback((producto) => {
     setProducts([...products, producto]);
@@ -29,9 +51,24 @@ function Producto() {
         <h1 className="titulo">Productos</h1>
       </header>
       <main>
+        {modoEdicion ? (
+          <FormularioProducto
+            productoEnEdicion={productoEnEdicion}
+            alGuardarEdicion={GuardarEdicion}
+            onCancelarEdicion={handleCancelarEdicion}
+          />
+        ) : (
+          <>
         <SearchBar onBuscar={handleBuscar} />
-        <FormularioProducto alAgregarProducto={alAgregarProducto} />
-        <ProductList products={productosFiltrados} />
+        <FormularioProducto 
+        alAgregarProducto={alAgregarProducto} 
+        />
+        <ProductList 
+        products={productosFiltrados}
+        onEditar={ModoEditarProducto} 
+        />
+        </>
+        )}
       </main>
     </div>
   );

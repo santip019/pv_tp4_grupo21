@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const FormularioProducto = ({ alAgregarProducto }) => {
   const [datosFormulario, setDatosFormulario] = useState({
-    id: "",
+    id: crypto.randomUUID().slice(0, 6), // crea un ID único de 6 caracteres
     descripcion: "",
     precioUnitario: "",
     descuento: "",
@@ -23,7 +23,6 @@ const FormularioProducto = ({ alAgregarProducto }) => {
 
     // validacion de que todos los campos se llenen para agregar el producto
     if (
-      !datosFormulario.id ||
       !datosFormulario.descripcion ||
       !datosFormulario.precioUnitario ||
       !datosFormulario.descuento ||
@@ -51,7 +50,7 @@ const FormularioProducto = ({ alAgregarProducto }) => {
 
     // para limpiar el formulario
     setDatosFormulario({
-      id: "",
+      id: crypto.randomUUID().slice(0, 6),
       descripcion: "",
       precioUnitario: "",
       descuento: "",
@@ -63,13 +62,8 @@ const FormularioProducto = ({ alAgregarProducto }) => {
   return (
     <form onSubmit={manejarEnvio}>
       <div>
-        <label>ID:</label>
-        <input
-          type="text"
-          name="id"
-          value={datosFormulario.id}
-          onChange={manejarCambio}
-        />
+        <label>ID: </label>
+        <span>{datosFormulario.id}</span>
       </div>
       <div>
         <label>Descripción:</label>

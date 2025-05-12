@@ -1,19 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
 body {
   font-family: Verdana, Helvetica, Arial, sans-serif;
   display: flex;
-  background-color: #242424;
+  background-color: #bdb9b6;
   justify-content: center;
 }
 
 .producto {
-  background-color: #242424;
-  color: #ffffff;
+  background-color: #ffffff;
+  color: #5e4e43;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 30px;
-  border-radius: 5%;
-  border: 2px solid #ffffff;
+  border-radius: 50px;
+}
+
+.titulo {
+  font-family: Playfair Display;
+  font-style: italic;
+  font-size: 2.5em;
+  color: #841c1c;
+}
+
+.contenedor-buscar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.buscar {
+  background-color: beige;
+  border:none;
+  border-radius: 10px;
+  width: 100%;
+  font-size: 16px;
+  padding: 11px; 
+}
+
+.id, .descripcion, .precio, .descuento, .precio-descuento, .stock {
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+.id input, .descripcion input, .precio input, .descuento input, .precio-descuento input, .stock input {
+  background-color: beige;
+  border:none;
+  font-size: 16px;
+  padding: 3px; 
+  margin-left: 10px;
+}
+
+button {
+  background-color: #841c1c;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
 }
 
 @media (prefers-color-scheme: light) {

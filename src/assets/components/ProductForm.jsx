@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 const FormularioProducto = ({
   alAgregarProducto,
   productoEnEdicion,
   alGuardarEdicion,
-  onCancelarEdicion
+  onCancelarEdicion,
 }) => {
   const [datosFormulario, setDatosFormulario] = useState({
     id: crypto.randomUUID().slice(0, 6), // crea un ID único de 6 caracteres
@@ -21,72 +21,64 @@ const FormularioProducto = ({
         ...productoEnEdicion,
         precioUnitario: productoEnEdicion.precioUnitario.toString(),
         descuento: productoEnEdicion.descuento.toString(),
-        stock: productoEnEdicion.stock.toString()
+        stock: productoEnEdicion.stock.toString(),
       });
     }
   }, [productoEnEdicion]);
 
-  const manejarCambio = (evento) => {
+  const manejarCambio = useCallback((evento) => {
     const { name, value } = evento.target;
-    setDatosFormulario({
-      ...datosFormulario,
+    setDatosFormulario((prev) => ({
+      ...prev,
       [name]: value,
-    });
-  };
+    }));
+  }, []);
 
-  const manejarEnvio = (evento) => {
-    evento.preventDefault();
+  const manejarEnvio = useCallback(
+    (evento) => {
+      evento.preventDefault();
 
-    // validacion de que todos los campos se llenen para agregar el producto
-    if (
-      !datosFormulario.descripcion ||
-      !datosFormulario.precioUnitario ||
-      !datosFormulario.descuento ||
-      !datosFormulario.stock
-    ) {
-      alert("Por favor, completa todos los campos.");
-      return;
-    }
+      // Validación de que todos los campos estén llenos
+      if (
+        !datosFormulario.descripcion ||
+        !datosFormulario.precioUnitario ||
+        !datosFormulario.descuento ||
+        !datosFormulario.stock
+      ) {
+        alert("Por favor, completa todos los campos.");
+        return;
+      }
 
-    // para calcular precio con descuento
-    const precioConDescuento =
-      datosFormulario.precioUnitario * (1 - datosFormulario.descuento / 100);
+      // Calcular precio con descuento
+      const precioConDescuento =
+        datosFormulario.precioUnitario * (1 - datosFormulario.descuento / 100);
 
-    // para crear un nuevo producto
-    const nuevoProducto = {
-      ...datosFormulario,
-      precioUnitario: parseFloat(datosFormulario.precioUnitario),
-      descuento: parseFloat(datosFormulario.descuento),
-      stock: parseInt(datosFormulario.stock, 10),
-      precioConDescuento,
-    };
+      // Crear un nuevo producto
+      const nuevoProducto = {
+        ...datosFormulario,
+        precioUnitario: parseFloat(datosFormulario.precioUnitario),
+        descuento: parseFloat(datosFormulario.descuento),
+        stock: parseInt(datosFormulario.stock, 10),
+        precioConDescuento,
+      };
 
-    // llama a la funcion para poder agregar un nuevo producto
-
-     if (productoEnEdicion) {
-      alGuardarEdicion(nuevoProducto);
-    } else {
-      alAgregarProducto(nuevoProducto);
-      setDatosFormulario({
-        id: crypto.randomUUID().slice(0, 6),
-        descripcion: "",
-        precioUnitario: "",
-        descuento: "0",
-        precioConDescuento: "",
-        stock: "",
-      });
-    }
-  
-    // para limpiar el formulario
-    setDatosFormulario({
-      id: crypto.randomUUID().slice(0, 6),
-      descripcion: "",
-      precioUnitario: "",
-      descuento: "0",
-      precioConDescuento: "",
-      stock: "",
-    });
-  };
+      // Llamar a la función correspondiente
+      if (productoEnEdicion) {
+        alGuardarEdicion(nuevoProducto);
+      } else {
+        alAgregarProducto(nuevoProducto);
+        setDatosFormulario({
+          id: crypto.randomUUID().slice(0, 6),
+          descripcion: "",
+          precioUnitario: "",
+          descuento: "0",
+          precioConDescuento: "",
+          stock: "",
+        });
+      }
+    },
+    [alAgregarProducto, alGuardarEdicion, datosFormulario, productoEnEdicion]
+  );
 
   return (
     <form onSubmit={manejarEnvio}>
@@ -125,14 +117,12 @@ const FormularioProducto = ({
       </div>
       <div className="precio-descuento">
         <label>Precio con Descuento:</label>
-        <span> $ 
-          { // se asegura de que el precio con descuento solo se muestre si hay un precio unitario y un descuento
-            datosFormulario.precioUnitario &&
-            datosFormulario.descuento
-              ? datosFormulario.precioUnitario *
-                (1 - datosFormulario.descuento / 100)
-              : ""
-          }
+        <span>
+          $
+          {datosFormulario.precioUnitario && datosFormulario.descuento
+            ? datosFormulario.precioUnitario *
+              (1 - datosFormulario.descuento / 100)
+            : ""}
         </span>
       </div>
       <div className="stock">

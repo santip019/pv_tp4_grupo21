@@ -6,8 +6,8 @@ function SearchBar({ onBuscar }) {
   };
 
   return (
-    <div className="search-bar">
-      <input
+    <div className="contenedor-buscar">
+      <input className="buscar"
         type="text"
         placeholder="Buscar por ID o descripción"
         onChange={handleChange}

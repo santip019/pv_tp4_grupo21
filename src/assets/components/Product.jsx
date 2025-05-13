@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useEffect} from "react";
 import FormularioProducto from "./ProductForm"; // Usamos el nuevo nombre
 import ProductList from "./ProductList";
 import SearchBar from "./SearchBar";
@@ -44,6 +44,11 @@ function Producto() {
       prod.id.toString().includes(terminoBusqueda)
     );
   }, [products, terminoBusqueda]);
+
+  //useEffect para detectar cambios en el array de productos
+  useEffect(() => {
+    console.log("El Array de productos ha cambiado:", products);
+  }, [products]);
 
   const eliminarProducto = useCallback((id) => {
     const productosRestantes = products.filter((prod) => prod.id !== id);

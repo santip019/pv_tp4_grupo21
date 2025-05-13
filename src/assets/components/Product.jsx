@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback, useEffect, use} from "react";
+import { useState, useMemo, useCallback, useEffect} from "react";
 import FormularioProducto from "./ProductForm"; // Usamos el nuevo nombre
 import ProductList from "./ProductList";
 import SearchBar from "./SearchBar";

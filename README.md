@@ -1,10 +1,10 @@
 ## Integrantes del Grupo
 
-- **Padilla Santiago** – 
-- **Efimov Valentina** – 
-- **Cruz Antonella** – 
-- **Calpanchay Maximiliano** – Desarrollo del componente ProductItem
-- **Fernandez Bruno** – 
+- **Padilla Santiago** – **santip019**
+- **Efimov Valentina** – **Valen-08**
+- **Cruz Antonella** – **antocruz06**
+- **Calpanchay Maximiliano** – **maxiicalpa**
+- **Fernandez Bruno** – **brunofernandez877**
 
 ## Descripción del Proyecto
 

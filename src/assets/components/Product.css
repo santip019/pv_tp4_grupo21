@@ -40,12 +40,12 @@ body {
   padding: 11px; 
 }
 
-.id, .descripcion, .precio, .descuento, .precio-descuento, .stock {
+.id, .nombre, .marca , .precio, .descuento, .precio-descuento, .stock {
   font-size: 16px;
   margin: 10px 0;
 }
 
-.id input, .descripcion input, .precio input, .descuento input, .precio-descuento input, .stock input {
+.id input, .nombre input, .marca input, .precio input, .descuento input, .precio-descuento input, .stock input {
   background-color: beige;
   border:none;
   font-size: 16px;

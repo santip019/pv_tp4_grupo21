@@ -8,7 +8,8 @@ const FormularioProducto = ({
 }) => {
   const [datosFormulario, setDatosFormulario] = useState({
     id: crypto.randomUUID().slice(0, 6), // crea un ID único de 6 caracteres
-    descripcion: "",
+    nombre: "",
+    marca: "",
     precioUnitario: "",
     descuento: "0",
     precioConDescuento: "",
@@ -40,7 +41,8 @@ const FormularioProducto = ({
 
       // Validación de que todos los campos estén llenos
       if (
-        !datosFormulario.descripcion ||
+        !datosFormulario.nombre ||
+        !datosFormulario.marca ||
         !datosFormulario.precioUnitario ||
         !datosFormulario.descuento ||
         !datosFormulario.stock
@@ -69,7 +71,8 @@ const FormularioProducto = ({
         alAgregarProducto(nuevoProducto);
         setDatosFormulario({
           id: crypto.randomUUID().slice(0, 6),
-          descripcion: "",
+          nombre: "",
+          marca: "",
           precioUnitario: "",
           descuento: "0",
           precioConDescuento: "",
@@ -86,12 +89,23 @@ const FormularioProducto = ({
         <label>ID: </label>
         <span>{datosFormulario.id}</span>
       </div>
-      <div className="descripcion">
-        <label>Descripción:</label>
+      <div className="nombre">
+        <label>Nombre:</label>
         <input
           type="text"
-          name="descripcion"
-          value={datosFormulario.descripcion}
+          name="nombre"
+          value={datosFormulario.nombre}
+          onChange={manejarCambio}
+          pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"
+          title="Solo letras y espacios"
+        />
+      </div>
+      <div className="marca">
+        <label>Marca:</label>
+        <input
+          type="text"
+          name="marca"
+          value={datosFormulario.marca}
           onChange={manejarCambio}
           pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"
           title="Solo letras y espacios"

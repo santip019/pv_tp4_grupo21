@@ -93,6 +93,8 @@ const FormularioProducto = ({
           name="descripcion"
           value={datosFormulario.descripcion}
           onChange={manejarCambio}
+          pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"
+          title="Solo letras y espacios"
         />
       </div>
       <div className="precio">
@@ -102,6 +104,7 @@ const FormularioProducto = ({
           name="precioUnitario"
           value={datosFormulario.precioUnitario}
           onChange={manejarCambio}
+          min="0" // se asegura de que el precio no sea negativo
         />
       </div>
       <div className="descuento">
@@ -132,6 +135,7 @@ const FormularioProducto = ({
           name="stock"
           value={datosFormulario.stock}
           onChange={manejarCambio}
+          min="0" // se asegura de que el stock no sea negativo
         />
       </div>
       <button type="submit">

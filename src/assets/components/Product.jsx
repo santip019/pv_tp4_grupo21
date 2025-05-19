@@ -39,10 +39,12 @@ function Producto() {
   }, []);
 
   const productosFiltrados = useMemo(() => {
-    return products.filter((prod) =>
-      prod.nombre.toLowerCase().includes(terminoBusqueda) ||
-      prod.marca.toLowerCase().includes(terminoBusqueda) ||
-      prod.id.toString().includes(terminoBusqueda)
+    return products
+      .filter((prod) => prod.estado)
+      .filter((prod) =>
+        prod.nombre.toLowerCase().includes(terminoBusqueda) ||
+        prod.marca.toLowerCase().includes(terminoBusqueda) ||
+        prod.id.toString().includes(terminoBusqueda)
     );
   }, [products, terminoBusqueda]);
 
@@ -52,7 +54,9 @@ function Producto() {
   }, [products]);
 
   const eliminarProducto = useCallback((id) => {
-    const productosRestantes = products.filter((prod) => prod.id !== id);
+    const productosRestantes = products.map((prod) => 
+      prod.id === id ? { ...prod, estado:false } : prod
+    );
     setProducts(productosRestantes);
   }, [products]);
 

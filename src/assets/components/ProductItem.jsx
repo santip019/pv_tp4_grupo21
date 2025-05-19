@@ -11,7 +11,10 @@ function ProductItem({ products, onEliminar, onEditar }) {
         <p>Descuento: {products.descuento}%</p>
         <p>Precio con Descuento: ${products.precioConDescuento}</p>
         <p>Stock: {products.stock}</p>
-
+        <p>
+          Estado:{" "}
+          {products.estado === undefined || products.estado ? "Activo" : "Inactivo"}
+        </p>
         <button onClick={() => onEditar(products)}>Editar</button>
         <button onClick={() => onEliminar(products.id)}>Eliminar</button>
       </li>

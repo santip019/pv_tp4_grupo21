@@ -62,6 +62,7 @@ const FormularioProducto = ({
         descuento: parseFloat(datosFormulario.descuento),
         stock: parseInt(datosFormulario.stock, 10),
         precioConDescuento,
+        estado: true,
       };
 
       // Llamar a la función correspondiente
@@ -151,6 +152,12 @@ const FormularioProducto = ({
           onChange={manejarCambio}
           min="0" // se asegura de que el stock no sea negativo
         />
+      </div>
+      <div className="estado">
+        <label>Estado:</label>
+        <span>
+          {datosFormulario.estado === undefined || datosFormulario.estado ? "Activo" : "Inactivo"}
+        </span>
       </div>
       <button type="submit">
         {productoEnEdicion ? "Guardar Cambios" : "Agregar Producto"}

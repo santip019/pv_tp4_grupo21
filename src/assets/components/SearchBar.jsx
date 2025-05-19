@@ -9,7 +9,7 @@ function SearchBar({ onBuscar }) {
     <div className="contenedor-buscar">
       <input className="buscar"
         type="text"
-        placeholder="Buscar por ID o descripción"
+        placeholder="Buscar por ID, nombre o marca"
         onChange={handleChange}
       />
     </div>

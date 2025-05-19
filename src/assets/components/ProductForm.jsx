@@ -97,8 +97,8 @@ const FormularioProducto = ({
           name="nombre"
           value={datosFormulario.nombre}
           onChange={manejarCambio}
-          pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"
-          title="Solo letras y espacios"
+          pattern="^(?!\s*$)[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"
+          title="Solo letras y espacios, no solo espacios"
         />
       </div>
       <div className="marca">
@@ -108,8 +108,8 @@ const FormularioProducto = ({
           name="marca"
           value={datosFormulario.marca}
           onChange={manejarCambio}
-          pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"
-          title="Solo letras y espacios"
+          pattern="^(?!\s*$)[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"
+          title="Solo letras y espacios, no solo espacios"
         />
       </div>
       <div className="precio">

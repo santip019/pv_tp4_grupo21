@@ -40,7 +40,8 @@ function Producto() {
 
   const productosFiltrados = useMemo(() => {
     return products.filter((prod) =>
-      prod.descripcion.toLowerCase().includes(terminoBusqueda) ||
+      prod.nombre.toLowerCase().includes(terminoBusqueda) ||
+      prod.marca.toLowerCase().includes(terminoBusqueda) ||
       prod.id.toString().includes(terminoBusqueda)
     );
   }, [products, terminoBusqueda]);

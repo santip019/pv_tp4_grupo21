@@ -4,7 +4,8 @@ function ProductItem({ products, onEliminar, onEditar }) {
   return (
     <div className="product-container">
       <li id={products?.id} className="product-item">
-        <p><strong>{products.descripcion}</strong></p>
+        <p><strong>{products.nombre}</strong></p>
+        <p>Marca:{products.marca}</p>
         <p>ID: {products.id}</p>
         <p>Precio: ${products.precioUnitario}</p>
         <p>Descuento: {products.descuento}%</p>

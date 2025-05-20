@@ -4,7 +4,7 @@ function ProductItem({ products, onEliminar, onEditar }) {
   return (
     <div className="product-container">
       <li id={products?.id} className="product-item">
-        <p><strong>{products.nombre}</strong></p>
+        <p className="titulo-producto"><strong>{products.nombre}</strong></p>
         <p>Marca:{products.marca}</p>
         <p>ID: {products.id}</p>
         <p>Precio: ${products.precioUnitario}</p>
@@ -15,8 +15,10 @@ function ProductItem({ products, onEliminar, onEditar }) {
           Estado:{" "}
           {products.estado === undefined || products.estado ? "Activo" : "Inactivo"}
         </p>
-        <button onClick={() => onEditar(products)}>Editar</button>
-        <button onClick={() => onEliminar(products.id)}>Eliminar</button>
+        <div className="contenedor-botones">
+          <button onClick={() => onEditar(products)}>Editar</button>
+          <button onClick={() => onEliminar(products.id)}>Eliminar</button>
+        </div>
       </li>
     </div>
   );

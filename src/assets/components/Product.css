@@ -3,12 +3,12 @@
 body {
   font-family: Verdana, Helvetica, Arial, sans-serif;
   display: flex;
-  background-color: #bdb9b6;
+  background-color: #c7c3c0;
   justify-content: center;
 }
 
 .producto {
-  background-color: #ffffff;
+  background-color: #fff7f7;
   color: #5e4e43;
   display: flex;
   flex-direction: column;
@@ -20,7 +20,7 @@ body {
 .titulo {
   font-family: Playfair Display;
   font-style: italic;
-  font-size: 2.5em;
+  font-size: 3.0em;
   color: #841c1c;
 }
 
@@ -32,7 +32,7 @@ body {
 }
 
 .buscar {
-  background-color: beige;
+  background-color: #9e8d8d49;
   border:none;
   border-radius: 10px;
   width: 100%;
@@ -46,27 +46,69 @@ body {
 }
 
 .id input, .nombre input, .marca input, .precio input, .descuento input, .precio-descuento input, .stock input {
-  background-color: beige;
+  font-family: Verdana;
+  color: #5e4e43;
+  background-color: #9e8d8d49;
   border:none;
-  font-size: 16px;
-  padding: 3px; 
+  font-size: 15px;
+  padding: 4px; 
   margin-left: 10px;
 }
 
-button {
-  background-color: #841c1c;
+.id input:focus, .nombre input:focus, .marca input:focus, .precio input:focus, .descuento input:focus, .precio-descuento input:focus, .stock input:focus, .buscar:focus {
+  outline: none;
+  border: 2px solid #9e8d8d;
+}
+
+.contenedor-boton-agregar, .contenedor-botones {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+button, .agregar-cambiar {
+  font-family: Verdana;
+  background-color: #9e4547;
   color: white;
   border: none;
   border-radius: 10px;
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 13px;
   cursor: pointer;
   margin-top: 20px;
+  margin-right: 10px;
+  margin-left: 10px;
 }
+
+.listado-productos {
+  list-style: none;
+  padding-left: 10px;
+}
+
+.product-container {
+  background-color: #f0e7e7;
+  color: #5e4e43;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 30px;
+}
+
+.product-item {
+  margin: 25px;
+}
+
+.titulo-producto {
+  font-family: Playfair Display;
+  text-align: center;
+  font-size: 22px;
+  color: #841c1c;
+}
+
 
 @media (prefers-color-scheme: light) {
   .producto {
-    color: #ffffff;
-    background-color: #242424;
+    color: #5e4e43;
+    background-color: #fff7f7;
   }
 }

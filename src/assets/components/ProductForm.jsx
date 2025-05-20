@@ -159,9 +159,11 @@ const FormularioProducto = ({
           {datosFormulario.estado === undefined || datosFormulario.estado ? "Activo" : "Inactivo"}
         </span>
       </div>
-      <button type="submit">
-        {productoEnEdicion ? "Guardar Cambios" : "Agregar Producto"}
-      </button>
+      <div className="contenedor-boton-agregar">
+        <button className="agregar-cambiar" type="submit">
+          {productoEnEdicion ? "Guardar Cambios" : "Agregar Producto"}
+        </button>
+      </div>
 
       {productoEnEdicion && (
         <button type="button" onClick={onCancelarEdicion}>

@@ -1,5 +1,3 @@
-import React from "react";
-
 function ProductItem({ products, onEliminar, onEditar }) {
   return (
     <div className="product-container">

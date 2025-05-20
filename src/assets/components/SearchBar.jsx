@@ -1,5 +1,3 @@
-import React from "react";
-
 function SearchBar({ onBuscar }) {
   const handleChange = (e) => {
     onBuscar(e.target.value);

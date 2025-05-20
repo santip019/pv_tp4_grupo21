@@ -16,7 +16,7 @@ function Producto() {
     setModoEdicion(true)
 }, []);
 
-  const GuardarEdicion = useCallback((productoEditado) => {
+  const guardarEdicion = useCallback((productoEditado) => {
   const productosActualizados = products.map((prod) =>
     prod.id === productoEditado.id ? productoEditado : prod
   );
@@ -69,7 +69,7 @@ function Producto() {
         {modoEdicion ? (
           <FormularioProducto
             productoEnEdicion={productoEnEdicion}
-            alGuardarEdicion={GuardarEdicion}
+            alGuardarEdicion={guardarEdicion}
             onCancelarEdicion={handleCancelarEdicion}
           />
         ) : (
